@@ -19,4 +19,4 @@ COMPILING
 INSTALLING
 **********
 
-        # cp follow /usr/bin
+        # cp follow /usr/local/bin
