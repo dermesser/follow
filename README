@@ -1,0 +1,15 @@
+README for follow
+*****************
+
+follow is a quite simple program using inotify for following a file, e.g. a logfile in which a server writes.
+It has the same effect like `tail -f` on a file, but it echoes the whole file before starting to follow, and it's very small.
+
+COMPILING
+*********
+
+        $ gcc -o follow follow.c
+
+INSTALLING
+**********
+
+        # cp follow /usr/bin
