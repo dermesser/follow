@@ -1,6 +1,9 @@
 README for follow
 *****************
 
+USE
+***
+
 follow is a quite simple program using inotify for following a file, e.g. a logfile in which a server writes.
 It has the same effect like `tail -f` on a file, but it echoes the whole file before starting to follow, and it's very small.
 
@@ -10,6 +13,8 @@ by opening a pipe like this:
         open(CHAT,"follow out|");
 
 By reading and writing raw bytes, it may be used with any encoding.
+
+If you use follow on your console, simply stop it via CTRL-C (^C), like `tail -f`
 
 COMPILING
 *********
