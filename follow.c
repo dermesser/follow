@@ -6,12 +6,12 @@
 
 void errexit(const char* str)
 {
-        fprintf(stderr,str);
+        perror(str);
         exit(1);
 }
 
 int main(int argc, char** argv)
-{	
+{
         int fd, notify;
         size_t readchars= 1, inotifysize = sizeof(struct inotify_event);
         const char* path = argv[1];
