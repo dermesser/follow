@@ -1,34 +1,37 @@
 # include <stdio.h>
+# include <errno.h>
+# include <string.h>
 # include <stdlib.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/inotify.h>
 
-void errexit(const char* str)
+void errexit(const char* str, ...)
 {
-        perror(str);
+        va_list args;
+        va_start(args,str);
+        vfprintf(stderr,str,args);
         exit(1);
 }
 
 int main(int argc, char** argv)
 {
         int fd, notify;
-        size_t readchars= 1, inotifysize = sizeof(struct inotify_event);
+        size_t readchars = 1, inotifysize = sizeof(struct inotify_event);
         const char* path = argv[1];
         char* buf = calloc(256,1);
         struct inotify_event evt;
 
-        notify = inotify_init();
+        if ( (notify = inotify_init()) == -1 )
+                errexit(strerror(errno));
 
         if ( argc != 2 )
-        {
-                fprintf(stderr,"Usage: %s FILENAME\n",argv[0]);
-                exit(1);
-        }
+                errexit("Usage: %s FILENAME\n",argv[0]);
 
         if ( -1 == (fd = open(path, O_RDONLY)) )
-                        errexit("Couldn't open file!\n");
-    
+                errexit("Couldn't open file!\n");
+
         while ( readchars > 0 )
         {
                 readchars = read(fd,buf,255);
