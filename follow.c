@@ -6,14 +6,14 @@
 
 void errexit(const char* str)
 {
-        fprintf(stderr,str);
+        perror(str);
         exit(1);
 }
 
 int main(int argc, char** argv)
-{	
+{
         int fd, notify;
-        size_t readchars= 1, inotifysize = sizeof(struct inotify_event);
+        size_t readchars = 1, inotifysize = sizeof(struct inotify_event);
         const char* path = argv[1];
         char* buf = calloc(256,1);
         struct inotify_event evt;
@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
         if ( -1 == (fd = open(path, O_RDONLY)) )
                         errexit("Couldn't open file!\n");
-    
+
         while ( readchars > 0 )
         {
                 readchars = read(fd,buf,255);
