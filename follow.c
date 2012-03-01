@@ -7,6 +7,8 @@
 # include <fcntl.h>
 # include <sys/inotify.h>
 
+# define BUFSIZE 256
+
 void errexit(const char* str, ...)
 {
         va_list args;
@@ -20,8 +22,9 @@ int main(int argc, char** argv)
         int fd, notify;
         size_t readchars = 1, inotifysize = sizeof(struct inotify_event);
         const char* path = argv[1];
-        char* buf = calloc(256,1);
+        char buf[BUFSIZE];
         struct inotify_event evt;
+        memset(buf,0,BUFSIZE);
 
         if ( (notify = inotify_init()) == -1 )
                 errexit("%s\n",strerror(errno));
@@ -29,7 +32,7 @@ int main(int argc, char** argv)
         if ( argc != 2 )
                 errexit("Usage: %s FILENAME\n",argv[0]);
 
-        if ( -1 == (fd = open(path, O_RDONLY)) )
+        if ( -1 == (fd = open(path,O_RDONLY)) )
                 errexit("%s\n",strerror(errno));
 
         while ( readchars > 0 )
@@ -53,5 +56,5 @@ int main(int argc, char** argv)
                 }
         }
 
-	return 0;
+        return 0;
 }
