@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 
                 if ( evt.mask == IN_MODIFY )
                 {
-                        while ((readchars = read(fd,buf,255)))
+                        while (0 < (readchars = read(fd,buf,255)))
                                 write(1,buf,readchars);
                 }
         }
