@@ -24,7 +24,6 @@ int main(int argc, char** argv)
         const char* path = argv[1];
         char buf[BUFSIZE];
         struct inotify_event evt;
-        memset(buf,0,BUFSIZE);
 
         if ( (notify = inotify_init()) == -1 )
                 errexit("%s\n",strerror(errno));
@@ -49,9 +48,7 @@ int main(int argc, char** argv)
 
                 if ( evt.mask == IN_MODIFY )
                 {
-                        readchars = read(fd,buf,255);
-//                        printf("Return: %i\n",readchars);
-                        if ( readchars > 0 )
+                        while ((readchars = read(fd,buf,255)))
                                 write(1,buf,readchars);
                 }
         }
