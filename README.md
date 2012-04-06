@@ -21,9 +21,9 @@ If you use follow on your console, simply stop it via CTRL-C (^C), like `tail -f
 COMPILING
 ---------
 
-    $ gcc -o follow follow.c
+    $ make follow
 
 INSTALLING
 ----------
 
-    # cp follow /usr/local/bin
+    # install follow /usr/local/bin
