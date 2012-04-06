@@ -12,8 +12,11 @@
 void errexit(const char* str, ...)
 {
         va_list args;
+
         va_start(args,str);
         vfprintf(stderr,str,args);
+        va_end(args);
+
         exit(1);
 }
 
