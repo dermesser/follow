@@ -29,13 +29,13 @@ int main(int argc, char** argv)
         struct inotify_event evt;
 
         if ( (notify = inotify_init()) == -1 )
-                errexit("%s\n",strerror(errno));
+                errexit("follow: %s\n",strerror(errno));
 
         if ( argc != 2 )
                 errexit("Usage: %s FILENAME\n",argv[0]);
 
         if ( -1 == (fd = open(path,O_RDONLY)) )
-                errexit("%s\n",strerror(errno));
+                errexit("follow: %s\n",strerror(errno));
 
         while ( readchars > 0 )
         {
