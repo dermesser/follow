@@ -34,7 +34,7 @@ int main(int argc, char** argv)
         if ( argc != 2 )
                 errexit("Usage: %s FILENAME\n",argv[0]);
 
-        if ( -1 == (fd = open(path,O_RDONLY|O_NONBLOCK)) )
+        if ( -1 == (fd = open(path,O_RDONLY)) )
                 errexit("follow: %s\n",strerror(errno));
 
         while ( readchars > 0 )
