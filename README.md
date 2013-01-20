@@ -27,3 +27,7 @@ INSTALLING
 ----------
 
     # install follow /usr/local/bin
+
+COMMAND LINE ARGUMENTS
+----------------------
+    -t : Produce timestamps after every newline being written as last character (newlines within a larger block of data written at once are not timestamped)
