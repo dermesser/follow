@@ -31,3 +31,8 @@ INSTALLING
 COMMAND LINE ARGUMENTS
 ----------------------
     -t : Produce timestamps after every newline being written as last character (newlines within a larger block of data written at once are not timestamped)
+
+TIMESTAMPS ON STDIN DATA
+------------------------
+
+If you want to add timestamps to data delivered on stdin, you may want to use [timelogger](https://github.com/dermesser/timelogger.git)
